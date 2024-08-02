@@ -18,11 +18,11 @@ function emvEncode(obj) {
             break;
         case "03":
             merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("03", obj.mobile) : dataObj("01", obj.bank_code) + dataObj("03", obj.mobile);
-            reference = (obj.reference == "") ? "" : dataObj("06", obj.reference);
+            reference = (obj.reference == "") ? "" : dataObj("08", obj.reference);
             break;
         case "04":
             merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("04", obj.email.toUpperCase()) : dataObj("01", obj.bank_code) + dataObj("04", obj.email.toUpperCase());
-            reference = (obj.reference == "") ? "" : dataObj("06", obj.reference);
+            reference = (obj.reference == "") ? "" : dataObj("08", obj.reference);
             break;
     }
 
