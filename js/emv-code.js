@@ -9,16 +9,20 @@ function emvEncode(obj) {
 
     var guid = dataObj("00", "hk.com.hkicl");
     var merchantAccountInformationTemplate = "";
+    var reference = "";
 
     switch (obj.account) {
         case "02":
             merchantAccountInformationTemplate = dataObj("02", obj.fps_id);
+            reference = (obj.reference == "") ? "" : dataObj("05", obj.reference);
             break;
         case "03":
             merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("03", obj.mobile) : dataObj("01", obj.bank_code) + dataObj("03", obj.mobile);
+            reference = (obj.reference == "") ? "" : dataObj("06", obj.reference);
             break;
         case "04":
             merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("04", obj.email.toUpperCase()) : dataObj("01", obj.bank_code) + dataObj("04", obj.email.toUpperCase());
+            reference = (obj.reference == "") ? "" : dataObj("06", obj.reference);
             break;
     }
 
@@ -29,7 +33,6 @@ function emvEncode(obj) {
     var merchantName = dataObj("59", "NA");
     var merchantCity = dataObj("60", "HK");
     var transactionAmount = (obj.amount == "") ? "" : dataObj("54", obj.amount);
-    var reference = (obj.reference == "") ? "" : dataObj("05", obj.reference);
     var additionalDataTemplate = (reference == "") ? "" : dataObj("62", reference);
 
     var msg = ""
