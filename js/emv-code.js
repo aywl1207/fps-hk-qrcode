@@ -15,18 +15,10 @@ function emvEncode(obj) {
             merchantAccountInformationTemplate = dataObj("02", obj.fps_id);
             break;
         case "03":
-            if(obj.bank_code){
-                merchantAccountInformationTemplate = dataObj("01", obj.bank_code) + dataObj("03", obj.mobile);
-            }else{
-                merchantAccountInformationTemplate = dataObj("03", obj.mobile);
-            }
+            merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("03", obj.mobile) : dataObj("01", obj.bank_code) + dataObj("03", obj.mobile);
             break;
         case "04":
-            if(obj.bank_code){
-                merchantAccountInformationTemplate = dataObj("01", obj.bank_code) + dataObj("04", obj.email.toUpperCase());
-            }else{
-                merchantAccountInformationTemplate = dataObj("04", obj.email.toUpperCase());
-            }
+            merchantAccountInformationTemplate = (obj.bank_code == "") ? dataObj("04", obj.email.toUpperCase()) : dataObj("01", obj.bank_code) + dataObj("04", obj.email.toUpperCase());
             break;
     }
 
